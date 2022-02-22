@@ -52,7 +52,7 @@ usePlayer('dQw4w9WgXcQ', youtube);
 </template>
 ```
 
-For more information see [Getting Started](./getting-started) and [Usage](/usage/basic).
+For more information see [Getting Started](./getting-started) and [Usage](/usage/composable).
 
 ### Fully typed
 

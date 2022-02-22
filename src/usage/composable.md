@@ -242,6 +242,8 @@ usePlayer('dQw4w9WgXcQ', youtube, {
   [here](https://developers.google.com/youtube/player_parameters#Parameters) for reference.
 - **cookie:** When this option is `true` the host `https://www.youtube.com` is used, otherwise
   `https://www.youtube-nocookie.com`
+- **width:** Set the width of the YouTube player. Number and string supported.
+- **height:** Set the height of the YouTube player. Number and string supported.
 
 <details>
 <summary>Show Type Declarations</summary>
@@ -294,3 +296,54 @@ export interface PlayerVars {
 ```
 
 </details>
+
+## Examples
+
+### Dynamically change the video ID
+
+You can pass a ref as the first argument of `usePlayer`. When the content of the ref changes, the new video will
+automatically start playing.
+
+```js
+import { usePlayer } from '@vue-youtube/core';
+import { ref } from 'vue';
+
+const videoId = ref('dQw4w9WgXcQ');
+const player = ref();
+
+const { onStateChange } = usePlayer(videoId, player);
+
+// Change video ID after 10 seconds (10000 ms)
+setTimeout(() => {
+  videoId.value = 'aqz-KE-bpKQ';
+}, 10 * 1000)
+
+// Log the video ID when the video starts to play
+onStateChange((event) => {
+  if (event.data == 1) {
+    console.log("I'm playing", videoId.value)
+  }
+});
+```
+
+### Toggle mute/unmute
+
+You can mute/unmute the player when clicking on a button.
+
+```vue
+<script setup lang="ts">
+import { usePlayer } from '@vue-youtube/core';
+import { ref } from 'vue';
+
+const youtube = ref();
+
+const { toggleMute } = usePlayer('dQw4w9WgXcQ', youtube);
+</script>
+
+<template>
+  <div ref="youtube" />
+  <button @click="toggleMute">
+    Toggle me
+  </button>
+</template>
+```
