@@ -9,14 +9,14 @@ import { usePlayer } from '@vue-youtube/core';
 import { ref } from 'vue';
 
 // Use a template ref to reference the target element
-const youtube = ref();
+const player = ref();
 
 // Call the 'usePlayer' function with the desired video ID and target ref
-usePlayer('dQw4w9WgXcQ', youtube);
+usePlayer('dQw4w9WgXcQ', player);
 </script>
 
 <template>
-  <div ref="youtube" />
+  <div ref="player" />
 </template>
 ```
 
@@ -31,8 +31,8 @@ The composable function provides multiple hooks to handle events. **All import s
 > This event fires whenever a player has finished loading and is ready to begin receiving API calls.
 
 ```js
-const youtube = ref();
-const { onReady } = usePlayer('dQw4w9WgXcQ', youtube);
+const player = ref();
+const { onReady } = usePlayer('dQw4w9WgXcQ', player);
 
 onReady((event) => {
   // Start playing the video when the player is ready*
@@ -66,8 +66,8 @@ export interface PlayerEvent {
 > your event listener function will specify an integer that corresponds to the new player state.
 
 ```js
-const youtube = ref();
-const { onStateChange } = usePlayer('dQw4w9WgXcQ', youtube);
+const player = ref();
+const { onStateChange } = usePlayer('dQw4w9WgXcQ', player);
 
 onStateChange((event) => {
   console.log(event)
@@ -108,8 +108,8 @@ export enum PlayerState {
 > environment.
 
 ```js
-const youtube = ref();
-const { onPlaybackQualityChange } = usePlayer('dQw4w9WgXcQ', youtube);
+const player = ref();
+const { onPlaybackQualityChange } = usePlayer('dQw4w9WgXcQ', player);
 
 onPlaybackQualityChange((event) => {
   console.log(event)
@@ -157,8 +157,8 @@ export type VideoQualityHighres = 'highres'
 > This event fires whenever the video playback rate changes.
 
 ```js
-const youtube = ref();
-const { onPlaybackRateChange } = usePlayer('dQw4w9WgXcQ', youtube);
+const player = ref();
+const { onPlaybackRateChange } = usePlayer('dQw4w9WgXcQ', player);
 
 onPlaybackRateChange((event) => {
   console.log(event)
@@ -190,8 +190,8 @@ export interface PlaybackRateChangeEvent extends PlayerEvent {
 > This event fires if an error occurs in the player. The API will pass an event object to the event listener function.
 
 ```js
-const youtube = ref();
-const { onError } = usePlayer('dQw4w9WgXcQ', youtube);
+const player = ref();
+const { onError } = usePlayer('dQw4w9WgXcQ', player);
 
 onError((event) => {
   console.log(event)
@@ -227,8 +227,8 @@ The `usePlayer` function has a optional third parameter to provide player option
 default values.
 
 ```js
-const youtube = ref();
-usePlayer('dQw4w9WgXcQ', youtube, {
+const player = ref();
+usePlayer('dQw4w9WgXcQ', player, {
   playerVars: {}, // {}
   cookie: false,  // true
   width: 1920,    // 1280
@@ -238,12 +238,12 @@ usePlayer('dQw4w9WgXcQ', youtube, {
 
 **Supported Options**
 
-- **playerVars:** Customize the player behavior, see
-  [here](https://developers.google.com/youtube/player_parameters#Parameters) for reference.
-- **cookie:** When this option is `true` the host `https://www.youtube.com` is used, otherwise
-  `https://www.youtube-nocookie.com`
-- **width:** Set the width of the YouTube player. Number and string supported.
-- **height:** Set the height of the YouTube player. Number and string supported.
+| Option       | Details                                                                                               |
+| ------------ | ----------------------------------------------------------------------------------------------------- |
+| `playerVars` | Customize the player behavior, see [here](https://developers.google.com/youtube/player_parameters#Parameters) for reference. |
+| `cookie`     | When this option is `true` the host `https://www.youtube.com` is used, otherwise `https://www.youtube-nocookie.com`|
+| `width`      | Set the width of the YouTube player. Number and string supported. |
+| `height`     | Set the height of the YouTube player. Number and string supported. |
 
 <details>
 <summary>Show Type Declarations</summary>
@@ -254,7 +254,9 @@ export function usePlayer(
   element: MaybeElementRef, 
   options: Options = {}
 ) : {
-  player: ShallowRef<Player | undefined>
+  instance: ShallowRef<Player | undefined>
+  togglePlay: () => void
+  toggleMute: () => void
   onPlaybackQualityChange: (cb: PlaybackQualityChangeCallback) => void
   onPlaybackRateChange: (cb: PlaybackRateChangeCallback) => void
   onStateChange: (cb: PlayerStateChangeCallback) => void
@@ -326,24 +328,24 @@ onStateChange((event) => {
 });
 ```
 
-### Toggle mute/unmute
+### Use `toggle*` helper functions
 
-You can mute/unmute the player when clicking on a button.
+`usePlayer` provides two helper functions `togglePlay` and `toggleMute`. `togglePlay` pauses/unpauses the video and
+`toggleMute` mutes/unmutes the player.
 
 ```vue
 <script setup lang="ts">
 import { usePlayer } from '@vue-youtube/core';
 import { ref } from 'vue';
 
-const youtube = ref();
+const player = ref();
 
-const { toggleMute } = usePlayer('dQw4w9WgXcQ', youtube);
+const { togglePlay, toggleMute } = usePlayer('dQw4w9WgXcQ', player);
 </script>
 
 <template>
-  <div ref="youtube" />
-  <button @click="toggleMute">
-    Toggle me
-  </button>
+  <div ref="player" />
+  <button @click="togglePlay">Pause/Unpause</button>
+  <button @click="toggleMute">Mute/Unmute</button>
 </template>
 ```
