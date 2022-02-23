@@ -55,7 +55,7 @@ const onReady = (event) => {
     :cookie="TRUE / FALSE"
     :width="WIDTH"
     :height="HEIGHT"
-  ></youtube-iframe>
+  />
 </template>
 ```
 
@@ -69,3 +69,47 @@ const onReady = (event) => {
 | `:height`                       | Set the height of the YouTube player. Number and string supported. |
 
 ## Examples
+
+### Dynamically change the video ID
+
+The `video-id` prop is reactive. If the video ID changes the new video will automatically start playing.
+
+```vue
+<script setup lang="ts">
+import { YoutubeIframe } from '@vue-youtube/component';
+import { ref } from 'vue';
+
+const videoId = ref('dQw4w9WgXcQ');
+
+// Change video ID after 10 seconds (10000 ms)
+setTimeout(() => {
+  videoId.value = 'aqz-KE-bpKQ';
+}, 10 * 1000);
+</script>
+
+<template>
+  <youtube-iframe :video-id="videoId" />
+</template>
+```
+
+### Use `toggle*` helper functions
+
+Accessing exposed functions and variables is straight forward when using template refs.
+
+```vue
+<script setup lang="ts">
+import { YoutubeIframe } from '@vue-youtube/component';
+import { ref, onMounted } from 'vue';
+
+const player = ref();
+
+const togglePlay = () => player.value?.togglePlay();
+const toggleMute = () => player.value?.toggleMute();
+</script>
+
+<template>
+  <youtube-iframe video-id="dQw4w9WgXcQ" ref="player" />
+  <button @click="togglePlay">Pause/Unpause</button>
+  <button @click="toggleMute">Mute/Unmute</button>
+</template>
+```

@@ -318,7 +318,7 @@ const { onStateChange } = usePlayer(videoId, player);
 // Change video ID after 10 seconds (10000 ms)
 setTimeout(() => {
   videoId.value = 'aqz-KE-bpKQ';
-}, 10 * 1000)
+}, 10 * 1000);
 
 // Log the video ID when the video starts to play
 onStateChange((event) => {
