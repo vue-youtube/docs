@@ -28,6 +28,10 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
         },
       ],
     },
+    {
+      text: 'Migration',
+      link: '/migration/guide',
+    },
   ],
 };
 
