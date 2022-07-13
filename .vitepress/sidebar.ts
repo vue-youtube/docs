@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { DefaultTheme } from 'vitepress';
 
 const sidebar: DefaultTheme.Config['sidebar'] = {
   '/': [
     {
       text: 'Introduction',
-      children: [
+      items: [
         {
           text: 'What is VueYoutube?',
           link: '/introduction/overview',
@@ -17,7 +18,7 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
     },
     {
       text: 'Usage',
-      children: [
+      items: [
         {
           text: 'Composable',
           link: '/usage/composable',
@@ -30,7 +31,12 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
     },
     {
       text: 'Migration',
-      link: '/migration/guide',
+      items: [
+        {
+          text: 'Guide',
+          link: '/migration/',
+        },
+      ],
     },
   ],
 };

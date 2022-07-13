@@ -11,7 +11,15 @@ export default defineConfig({
   themeConfig: {
     nav,
     sidebar,
-    editLinks: true,
-    repo: 'vue-youtube/docs',
+    editLink: {
+      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      text: 'Edit this page on GitHub',
+    },
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/vue-youtube/docs',
+      },
+    ],
   },
 });
