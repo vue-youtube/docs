@@ -24,4 +24,5 @@ export default defineConfig({
       },
     ],
   },
+  head: [['link', { rel: 'icon', type: 'image/x-icon', href: 'docs/favicon.ico' }]],
 });
