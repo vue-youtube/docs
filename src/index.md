@@ -8,6 +8,9 @@ hero:
   name: VueYoutube
   text: Vue Plugin powered by Vite and TS
   tagline: This plugin makes it easy to integrate the YouTube Iframe Player into your Vue 2/3 app.
+  image:
+    src: /logo_shadow.svg
+    alt: VueYoutube
   actions:
     - theme: brand
       text: Get Started

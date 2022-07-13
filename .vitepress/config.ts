@@ -9,6 +9,7 @@ export default defineConfig({
   description: 'Integrate the YouTube Iframe Player into your Vue 2/3 app.',
   srcDir: './src',
   themeConfig: {
+    logo: 'logo.svg',
     nav,
     sidebar,
     editLink: {
