@@ -30,7 +30,7 @@ The composable function provides multiple hooks to handle events. **All import s
 
 > This event fires whenever a player has finished loading and is ready to begin receiving API calls.
 
-```js
+```ts
 const player = ref();
 const { onReady } = usePlayer('dQw4w9WgXcQ', player);
 
@@ -65,7 +65,7 @@ export interface PlayerEvent {
 > This event fires whenever the player's state changes. The data property of the event object that the API passes to 
 > your event listener function will specify an integer that corresponds to the new player state.
 
-```js
+```ts
 const player = ref();
 const { onStateChange } = usePlayer('dQw4w9WgXcQ', player);
 
@@ -107,7 +107,7 @@ export enum PlayerState {
 > This event fires whenever the video playback quality changes. It might signal a change in the viewer's playback
 > environment.
 
-```js
+```ts
 const player = ref();
 const { onPlaybackQualityChange } = usePlayer('dQw4w9WgXcQ', player);
 
@@ -156,7 +156,7 @@ export type VideoQualityHighres = 'highres'
 
 > This event fires whenever the video playback rate changes.
 
-```js
+```ts
 const player = ref();
 const { onPlaybackRateChange } = usePlayer('dQw4w9WgXcQ', player);
 
@@ -189,7 +189,7 @@ export interface PlaybackRateChangeEvent extends PlayerEvent {
 
 > This event fires if an error occurs in the player. The API will pass an event object to the event listener function.
 
-```js
+```ts
 const player = ref();
 const { onError } = usePlayer('dQw4w9WgXcQ', player);
 
@@ -226,7 +226,7 @@ export enum PlayerError {
 The `usePlayer` function has a optional third parameter to provide player options. The values prefixed with `//` are the
 default values.
 
-```js
+```ts
 const player = ref();
 usePlayer('dQw4w9WgXcQ', player, {
   playerVars: {}, // {}
@@ -255,8 +255,10 @@ export function usePlayer(
   options: Options = {}
 ) : {
   instance: ShallowRef<Player | undefined>
-  togglePlay: () => void
-  toggleMute: () => void
+  togglePlay: () => void;
+  toggleMute: () => void;
+  toggleLoop: () => void;
+  toggleShuffle: () => void;
   onPlaybackQualityChange: (cb: PlaybackQualityChangeCallback) => void
   onPlaybackRateChange: (cb: PlaybackRateChangeCallback) => void
   onStateChange: (cb: PlayerStateChangeCallback) => void
@@ -306,8 +308,8 @@ export interface PlayerVars {
 You can pass a ref as the first argument of `usePlayer`. When the content of the ref changes, the new video will
 automatically start playing.
 
-```js
-import { usePlayer } from '@vue-youtube/core';
+```ts
+import { usePlayer, PlayerState } from '@vue-youtube/core';
 import { ref } from 'vue';
 
 const videoId = ref('dQw4w9WgXcQ');
@@ -322,16 +324,18 @@ setTimeout(() => {
 
 // Log the video ID when the video starts to play
 onStateChange((event) => {
-  if (event.data == 1) {
+  if (event.data == PlayerState.PLAYING) {
     console.log("I'm playing", videoId.value)
   }
 });
 ```
 
-### Use `toggle*` helper functions
+### Play / pause the video
 
-`usePlayer` provides two helper functions `togglePlay` and `toggleMute`. `togglePlay` pauses/unpauses the video and
-`toggleMute` mutes/unmutes the player.
+You can toggle the video between playing / paused with the `togglePlay` helper function. You don't need to keep track of
+the player state.
+
+See [here](./helpers#toggleplay-function) for more information on the `togglePlay` function.
 
 ```vue
 <script setup lang="ts">
@@ -340,12 +344,11 @@ import { ref } from 'vue';
 
 const player = ref();
 
-const { togglePlay, toggleMute } = usePlayer('dQw4w9WgXcQ', player);
+const { togglePlay } = usePlayer('dQw4w9WgXcQ', player);
 </script>
 
 <template>
   <div ref="player" />
-  <button @click="togglePlay">Pause/Unpause</button>
-  <button @click="toggleMute">Mute/Unmute</button>
+  <button @click="togglePlay">Pause / Unpause</button>
 </template>
 ```

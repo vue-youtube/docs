@@ -27,6 +27,10 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
           text: 'Component',
           link: '/usage/component',
         },
+        {
+          text: 'Helper Functions',
+          link: '/usage/helpers',
+        },
       ],
     },
     {
