@@ -39,3 +39,65 @@ pnpm install @vue-youtube/core @vue-youtube/component
 ```
 
 ## Updating the code
+
+### Changes in the `main.{ts,js}` file
+
+```ts{4,6}
+import { createApp } from 'vue';
+import app from './app.vue';
+
+import YoutubeIframe from '@techassi/vue-youtube-iframe';
+
+createApp(app).use(YoutubeIframe).mount('#app');
+```
+
+**Change to**
+
+```ts
+import { createApp } from 'vue';
+import app from './app.vue';
+
+createApp(app).mount('#app');
+```
+
+### Changes in `YourComponent.vue` file
+
+If you want to keep using the Component you don't have to change your code. Just make sure to import the Component.
+
+```vue
+<script setup lang="ts">
+// Import the 'YoutubeIframe' component
+import { YoutubeIframe } from '@vue-youtube/component';
+</script>
+
+<template>
+    <youtube-iframe :video-id="YT_VIDEO_ID"></youtube-iframe>
+</template>
+```
+
+Please do keep in mind that the events have changed. See [here](../usage/component.md#event-callbacks) for all available
+events.
+
+---
+
+If you want to switch to Composables, update your code.
+
+```vue
+<script setup lang="ts">
+// Import the 'usePlayer' function
+import { usePlayer } from '@vue-youtube/core';
+import { ref } from 'vue';
+
+// Use a template ref to reference the target element
+const player = ref();
+
+// Call the 'usePlayer' function with the desired video ID and target ref
+usePlayer('YT_VIDEO_ID', player);
+</script>
+
+<template>
+  <div ref="player" />
+</template>
+```
+
+See [here](../usage/composable.md) for more information on how to use Composables.
