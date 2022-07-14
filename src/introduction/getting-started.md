@@ -43,7 +43,7 @@ usePlayer('dQw4w9WgXcQ', youtube);
 
 ### Component
 
-To use the component you need to install the additional package:
+To use the Component you need to install the additional package:
 
 ```shell
 # NPM

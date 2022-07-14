@@ -6,7 +6,7 @@ This plugin makes it easy to integrate the YouTube Iframe Player into your Vue 2
 
 I was writing a small Vue application in which I wanted to add an embedded YouTube video. At the time of writing Vue 3
 was the new kid on the block and was only released for a short period of time (~ 1-2 months). Naturally I was on the
-hunt for a Vue plugin which provided access to the YouTube Iframe API as a component. I found many alternatives on
+hunt for a Vue plugin which provided access to the YouTube Iframe API as a Component. I found many alternatives on
 [npmjs.com](https://npmjs.com) but all of them were aimed at Vue 2. That's when I decided to write my own plugin /
 library which was compatible with the new Vue 3 plugin API and concepts. Out of these efforts
 `@techassi/vue-youtube-iframe` was born. `@vue-youtube/core` is the new and improved iteration under a new name, but

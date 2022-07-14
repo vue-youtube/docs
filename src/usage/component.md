@@ -21,10 +21,12 @@ import { YoutubeIframe } from '@vue-youtube/component';
 
 ## Event Callbacks
 
-The component provides multiple hooks to handle events. **All import statements are removed for simplicity.**
+The Component provides multiple hooks to handle events.
 
 ```vue
 <script setup lang="ts">
+import { YoutubeIframe } from '@vue-youtube/component';
+
 const onReady = (event) => {
   console.log(event);
 }
