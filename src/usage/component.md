@@ -43,6 +43,7 @@ const onReady = (event) => {
 | `@state-change` or `@stateChange` | This event fires whenever the player's state changes. The data property of the event object that the API passes to your event listener function will specify an integer that corresponds to the new player state. *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onStateChange)* |
 | `@playback-quality-change` or `@playbackQualityChange` | This event fires whenever the video playback quality changes. It might signal a change in the viewer's playback environment. *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onPlaybackQualityChange)* |
 | `@playback-rate-change` or `@playbackRateChange` | This event fires whenever the video playback rate changes. *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onPlaybackRateChange)* |
+| `@api-change` or `@apiChange` | This event fires if an error occurs in the player. The API will pass an event object to the event listener function. *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onError)* |
 | `@error` | This event fires if an error occurs in the player. The API will pass an event object to the event listener function.  *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onError)* |
 
 ## Configuration
@@ -92,24 +93,25 @@ setTimeout(() => {
 </template>
 ```
 
-### Use `toggle*` helper functions
+### Play / pause the video
 
-Accessing exposed functions and variables is straight forward when using template refs.
+You can toggle the video between playing / paused with the `togglePlay` helper function. You don't need to keep track of
+the player state.
+
+See [here](./helpers#toggleplay-function) for more information on the `togglePlay` function.
 
 ```vue
 <script setup lang="ts">
 import { YoutubeIframe } from '@vue-youtube/component';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 const player = ref();
 
 const togglePlay = () => player.value?.togglePlay();
-const toggleMute = () => player.value?.toggleMute();
 </script>
 
 <template>
   <youtube-iframe video-id="dQw4w9WgXcQ" ref="player" />
-  <button @click="togglePlay">Pause/Unpause</button>
-  <button @click="toggleMute">Mute/Unmute</button>
+  <button @click="togglePlay">Pause / Unpause</button>
 </template>
 ```
