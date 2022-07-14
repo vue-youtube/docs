@@ -183,6 +183,37 @@ export interface PlaybackRateChangeEvent extends PlayerEvent {
 
 </details>
 
+### onApiChange
+
+*See [Reference](https://developers.google.com/youtube/iframe_api_reference#onApiChange)*
+
+> This event is fired to indicate that the player has loaded (or unloaded) a module with exposed API methods.
+
+```ts
+const player = ref();
+const { onApiChange } = usePlayer('dQw4w9WgXcQ', player);
+
+onApiChange((event) => {
+  console.log(event)
+})
+```
+
+<details>
+<summary>Show Type Declarations</summary>
+
+```ts
+export function onApiChange: (cb: APIChangeCallback): void;
+export type APIChangeCallback = PlayerEventCallback<PlayerEvent>;
+export interface PlayerEventCallback<T extends PlayerEvent> {
+    (event: T): void;
+}
+export interface PlayerEvent {
+    target: Player;
+}
+```
+
+</details>
+
 ### onError
 
 *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onError)*
