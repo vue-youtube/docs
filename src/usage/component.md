@@ -19,6 +19,8 @@ import { YoutubeIframe } from '@vue-youtube/component';
 </template>
 ```
 
+**Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.**
+
 ## Event Callbacks
 
 The Component provides multiple hooks to handle events.

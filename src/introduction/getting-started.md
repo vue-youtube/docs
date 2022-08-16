@@ -19,6 +19,19 @@ pnpm install @vue-youtube/core
 
 ## Usage
 
+### Register the manager
+
+The player manager needs to be registered with `app.use()` in the `main.ts` file.
+
+```ts
+import { createManager } from '@vue-youtube/core';
+import { createApp } from 'vue';
+
+import app from './app.vue';
+
+createApp(app).use(createManager()).mount('#app');
+```
+
 ### Composable
 
 The most basic usage as a Composable is as easy as:

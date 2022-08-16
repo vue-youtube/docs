@@ -20,6 +20,10 @@ const sidebar: DefaultTheme.Config['sidebar'] = {
       text: 'Usage',
       items: [
         {
+          text: 'Manager',
+          link: '/usage/manager',
+        },
+        {
           text: 'Composable',
           link: '/usage/composable',
         },

@@ -53,11 +53,12 @@ createApp(app).use(YoutubeIframe).mount('#app');
 
 **Change to**
 
-```ts
+```ts{1,5}
+import { createManager } from '@vue-youtube/core';
 import { createApp } from 'vue';
 import app from './app.vue';
 
-createApp(app).mount('#app');
+createApp(app).use(createManager()).mount('#app');
 ```
 
 ### Changes in `YourComponent.vue` file
