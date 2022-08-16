@@ -20,6 +20,8 @@ usePlayer('dQw4w9WgXcQ', player);
 </template>
 ```
 
+**Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.**
+
 ## Event Callbacks
 
 The composable function provides multiple hooks to handle events. **All import statements are removed for simplicity.**
@@ -42,11 +44,9 @@ onReady((event) => {
 
 **This will only work when the player is muted. See [Configuration](#configuration)*
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onReady(cb: ReadyCallback): void
+export function onReady: (...cb: Array<ReadyCallback>): void
 export type ReadyCallback = PlayerEventCallback<PlayerEvent>
 export interface PlayerEventCallback<T extends PlayerEvent> {
   (event: T): void;
@@ -55,8 +55,7 @@ export interface PlayerEvent {
   target: Player;
 }
 ```
-
-</details>
+:::
 
 ### onStateChange
 
@@ -74,11 +73,9 @@ onStateChange((event) => {
 })
 ```
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onStateChange(cb: PlayerStateChangeCallback): void
+export function onStateChange(...cb: Array<PlayerStateChangeCallback>): void
 export type PlayerStateChangeCallback = PlayerEventCallback<
   PlayerStateChangeEvent
 >
@@ -97,8 +94,7 @@ export enum PlayerState {
   VIDEO_CUED = 5
 }
 ```
-
-</details>
+:::
 
 ### onPlaybackQualityChange
 
@@ -116,11 +112,9 @@ onPlaybackQualityChange((event) => {
 })
 ```
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onPlaybackQualityChange(cb: PlayerStateChangeCallback): void
+export function onPlaybackQualityChange(...cb: Array<PlayerStateChangeCallback>): void
 export type PlaybackQualityChangeCallback = PlayerEventCallback<
   PlaybackQualityChangeEvent
 >
@@ -147,8 +141,7 @@ export type VideoQualityHD720 = 'hd720'
 export type VideoQualityHD1080 = 'hd1080'
 export type VideoQualityHighres = 'highres'
 ```
-
-</details>
+:::
 
 ### onPlaybackRateChange
 
@@ -165,11 +158,9 @@ onPlaybackRateChange((event) => {
 })
 ```
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onPlaybackRateChange(cb: PlaybackRateChangeCallback): void
+export function onPlaybackRateChange(...cb: Array<PlaybackRateChangeCallback>): void
 export type PlaybackRateChangeCallback = PlayerEventCallback<
   PlaybackRateChangeEvent
 >
@@ -180,8 +171,7 @@ export interface PlaybackRateChangeEvent extends PlayerEvent {
   data: number;
 }
 ```
-
-</details>
+:::
 
 ### onApiChange
 
@@ -198,11 +188,9 @@ onApiChange((event) => {
 })
 ```
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onApiChange: (cb: APIChangeCallback): void;
+export function onApiChange: (...cb: Array<APIChangeCallback>): void;
 export type APIChangeCallback = PlayerEventCallback<PlayerEvent>;
 export interface PlayerEventCallback<T extends PlayerEvent> {
     (event: T): void;
@@ -211,8 +199,7 @@ export interface PlayerEvent {
     target: Player;
 }
 ```
-
-</details>
+:::
 
 ### onError
 
@@ -229,11 +216,9 @@ onError((event) => {
 })
 ```
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
-export function onError(cb: ErrorCallback): void
+export function onError(...cb: Array<ErrorCallback>): void
 export type ErrorCallback = PlayerEventCallback<ErrorEvent>
 export interface PlayerEventCallback<T extends PlayerEvent> {
   (event: T): void;
@@ -249,8 +234,7 @@ export enum PlayerError {
   NOT_ALLOWED_DISGUISE = 150
 }
 ```
-
-</details>
+:::
 
 ## Configuration
 
@@ -276,26 +260,24 @@ usePlayer('dQw4w9WgXcQ', player, {
 | `width`      | Set the width of the YouTube player. Number and string supported. |
 | `height`     | Set the height of the YouTube player. Number and string supported. |
 
-<details>
-<summary>Show Type Declarations</summary>
-
+::: details Show Type Declarations
 ```ts
 export function usePlayer(
   newVideoId: MaybeRef<string>, 
   element: MaybeElementRef, 
   options: Options = {}
 ) : {
-  instance: ShallowRef<Player | undefined>
+  instance: ShallowRef<Player | undefined>;
   togglePlay: () => void;
   toggleMute: () => void;
   toggleLoop: () => void;
   toggleShuffle: () => void;
-  onPlaybackQualityChange: (cb: PlaybackQualityChangeCallback) => void
-  onPlaybackRateChange: (cb: PlaybackRateChangeCallback) => void
-  onStateChange: (cb: PlayerStateChangeCallback) => void
-  onApiChange: (cb: APIChangeCallback) => void
-  onError: (cb: ErrorCallback) => void
-  onReady: (cb: ReadyCallback) => void
+  onPlaybackQualityChange: (...cb: Array<PlaybackQualityChangeCallback>) => void;
+  onPlaybackRateChange: (...cb: Array<PlaybackRateChangeCallback>) => void;
+  onStateChange: (...cb: Array<PlayerStateChangeCallback>) => void;
+  onApiChange: (...cb: Array<APIChangeCallback>) => void;
+  onError: (...cb: Array<ErrorCallback>) => void;
+  onReady: (...cb: Array<ReadyCallback>) => void;
 }
 export interface Options {
   height?: number | string;
@@ -329,8 +311,7 @@ export interface PlayerVars {
   start?: number | undefined;
 }
 ```
-
-</details>
+:::
 
 ## Examples
 
