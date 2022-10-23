@@ -26,6 +26,40 @@ usePlayer('dQw4w9WgXcQ', player);
 
 The composable function provides multiple hooks to handle events. **All import statements are removed for simplicity.**
 
+All event callbacks support adding one or multiple callback functions. It is also possible to call the event callbacks
+multiple times to achieve the same effect.
+
+```ts
+const player = ref();
+const { onReady } = usePlayer('dQw4w9WgXcQ', player);
+
+// Provide multiple event callbacks at once
+onReady(
+  (event) => {
+    console.log('I will get triggered when the player is ready');
+  },
+  (event) => {
+    console.log('You will see this message as well!');
+  },
+);
+```
+
+---
+
+```ts
+const player = ref();
+const { onReady } = usePlayer('dQw4w9WgXcQ', player);
+
+// Provide multiple event callbacks by adding them separately
+onReady((event) => {
+  console.log('I will get triggered when the player is ready');
+});
+
+onReady((event) => {
+  console.log('You will see this message as well!');
+});
+```
+
 ### onReady
 
 *See [Reference](https://developers.google.com/youtube/iframe_api_reference#onReady)*
@@ -320,7 +354,8 @@ export interface PlayerVars {
 You can pass a ref as the first argument of `usePlayer`. When the content of the ref changes, the new video will
 automatically start playing.
 
-```ts
+```vue
+<script setup lang="ts">
 import { usePlayer, PlayerState } from '@vue-youtube/core';
 import { ref } from 'vue';
 
@@ -340,6 +375,12 @@ onStateChange((event) => {
     console.log("I'm playing", videoId.value)
   }
 });
+</script>
+
+<template>
+  <div ref="player" />
+  <button @click="togglePlay">Pause / Unpause</button>
+</template>
 ```
 
 ### Play / pause the video
