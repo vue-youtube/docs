@@ -15,10 +15,16 @@ createApp(app).use(createManager()).mount('#app');
 ```ts
 export declare const createManager: () => Manager;
 export interface Manager {
+    register(target: HTMLElement, cb: RegisterFunction): void;
     install(app: App): void;
-    insertScript(): void;
-    registerPlayer(target: HTMLElement, cb: RegisterFunction): void;
-    register(id: string, cb: RegisterFunction): void;
+    state: ManagerState;
+    _insert(): void;
+}
+export interface ManagerState {
+    backlog: Map<string, RegisterFunction>;
+    players: Map<string, RegisterFunction>;
+    counter: number;
+    factory: any;
 }
 export declare type RegisterFunction = (data: RegisterFunctionReturn) => void;
 export declare type RegisterFunctionReturn = {
