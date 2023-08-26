@@ -1,6 +1,12 @@
 name: publish-docs
+
 on:
-  push
+  push:
+    paths:
+      - '.github/workflows/**'
+      - '.vitepress/**'
+      - 'src/**'
+
 jobs:
   publish-docs:
     runs-on: ubuntu-latest
