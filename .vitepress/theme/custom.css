@@ -7,6 +7,18 @@
       #35495E80 30%,
       #42B88380);
   --vp-home-hero-image-filter: blur(50px);
+
+  /* Link color */
+  --vp-c-brand: #41b782;
+
+  /* Start page primary CTA button */
+  --vp-button-brand-hover-border: #33a06f;
+  --vp-button-brand-hover-bg: #42d392;
+  --vp-button-brand-active-border: #33a06f;
+  --vp-button-brand-active-bg: #42d392;
+
+  --vp-button-brand-border: #36ea9a;
+  --vp-button-brand-bg: #41b782;
 }
 
 .VPHome .VPHero p.text {

@@ -23,6 +23,10 @@ export default defineConfig({
         link: 'https://github.com/vue-youtube/docs',
       },
     ],
+    search: {
+      provider: 'local',
+    },
   },
   head: [['link', { rel: 'icon', type: 'image/x-icon', href: '/docs/favicon.ico' }]],
+  cleanUrls: true,
 });
