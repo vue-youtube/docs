@@ -85,7 +85,7 @@ If you for example want to load the scripts when the user consents to do so (via
 ```vue
 <template>
   <div class="my-cookie-consent-banner">
-    <button @click="manager.load">
+    <button @click="consent">
       Accept Cookies
     </button>
   </div>
