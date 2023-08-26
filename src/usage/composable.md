@@ -2,6 +2,10 @@
 
 ## Usage
 
+::: tip Hint
+Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.
+:::
+
 ```vue
 <script setup lang="ts">
 // Import the 'usePlayer' function
@@ -19,8 +23,6 @@ usePlayer('dQw4w9WgXcQ', player);
   <div ref="player" />
 </template>
 ```
-
-**Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.**
 
 ## Event Callbacks
 
@@ -76,7 +78,10 @@ onReady((event) => {
 })
 ```
 
-**This will only work when the player is muted. See [Configuration](#configuration)*
+::: info
+Automatic playback (without previous user interaction) only works when the player is muted. See how to
+[mute](#configuration) the player.
+:::
 
 ::: details Show Type Declarations
 ```ts
@@ -270,6 +275,42 @@ export enum PlayerError {
 ```
 :::
 
+## Player Instance
+
+This library provides many utility functions to handle basic interactions with the player. However, if you need deeper
+control over the player, `usePlayer` returns a shallow ref of the player instance. The instance provides full access
+to all player functions like:
+
+```vue
+<template>
+  <div ref="yt" />
+</template>
+
+<script setup lang="ts">
+import { usePlayer } from '@vue-youtube/core';
+import { ref } from 'vue';
+
+const videoId = ref('dQw4w9WgXcQ');
+const yt = ref();
+
+const { instance } = usePlayer(videoId, yt, {
+  playerVars: {
+    autoplay: 1,
+    mute: 1,
+  },
+});
+
+instance.value?.cueVideoById('aqz-KE-bpKQ', 0, 'hd1080');
+instance.value?.getPlaybackQuality();
+instance.value?.getCurrentTime();
+</script>
+```
+
+::: danger Caution
+Be careful when using `instance`. You could, for example, destroy the player instance. In this case, the library cannot
+recover the destroyed player.
+:::
+
 ## Configuration
 
 The `usePlayer` function has a optional third parameter to provide player options. The values prefixed with `//` are the
@@ -287,12 +328,12 @@ usePlayer('dQw4w9WgXcQ', player, {
 
 **Supported Options**
 
-| Option       | Details                                                                                               |
-| ------------ | ----------------------------------------------------------------------------------------------------- |
+| Option       | Details                                                                                                                      |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | `playerVars` | Customize the player behavior, see [here](https://developers.google.com/youtube/player_parameters#Parameters) for reference. |
-| `cookie`     | When this option is `true` the host `https://www.youtube.com` is used, otherwise `https://www.youtube-nocookie.com`|
-| `width`      | Set the width of the YouTube player. Number and string supported. |
-| `height`     | Set the height of the YouTube player. Number and string supported. |
+| `cookie`     | When this option is `true` the host `https://www.youtube.com` is used, otherwise `https://www.youtube-nocookie.com`          |
+| `width`      | Set the width of the YouTube player. Number and string supported.                                                            |
+| `height`     | Set the height of the YouTube player. Number and string supported.                                                           |
 
 ::: details Show Type Declarations
 ```ts
