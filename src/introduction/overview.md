@@ -1,6 +1,6 @@
 # What is VueYoutube?
 
-This plugin makes it easy to integrate the YouTube Iframe Player into your Vue 2/3 app.
+Integrate the YouTube Iframe Player into your Vue 2/3 app.
 
 ## Motivation
 

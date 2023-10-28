@@ -10,7 +10,7 @@ export default defineConfig({
   srcDir: './src',
   base: '/docs/',
   themeConfig: {
-    logo: 'logo.svg',
+    logo: '/logo.svg',
     nav,
     sidebar,
     editLink: {
@@ -26,7 +26,16 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
+    footer: {
+      message: 'Released under the <a href="https://github.com/vue-youtube/vue-youtube/blob/main/LICENSE">MIT License</a>.',
+      copyright: 'Copyright © 2020-present <a href="https://github.com/Techassi">Techassi</a>'
+    },
   },
+  sitemap: {
+    hostname: 'https://vue-youtube.github.io/docs/'
+  },
+  mpa: true,
   head: [['link', { rel: 'icon', type: 'image/x-icon', href: '/docs/favicon.ico' }]],
+  lastUpdated: true,
   cleanUrls: true,
 });

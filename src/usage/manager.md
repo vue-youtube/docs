@@ -42,11 +42,10 @@ The manager has multiple responsibilities:
 
 ## Options
 
-### `deferLoading`
+### `deferLoading` <Badge type="tip" text="Since 0.0.5" />
 
-When `deferLoading` is enabled, the manager will not load and insert required scripts into the page. Instead, it will
-do so either when `Manager.load()` is called or when the `usePlayer()` composable is used and `autoLoad` is set to
-`true`.
+When `deferLoading` is enabled, the manager will not load and insert required scripts into the page automatically upon
+page load.
 
 ```ts{7-10}
 import { createManager } from '@vue-youtube/core';
@@ -77,7 +76,13 @@ export interface DeferLoadingOption {
 ```
 :::
 
----
+#### Implicit loading
+
+The manager will implicitly load the required scripts `autoLoad` is set to `true`. This is useful when only a limited
+number of pages use the player. The scripts will only be loaded when the user visits these pages. This mechanism reduces
+initially requested content and thus load times.
+
+#### Explicit loading
 
 If you for example want to load the scripts when the user consents to do so (via a cookie consent banner), you can use
 `injectManager()` to get access to the manager instance. The manager can then be loaded using `Manager.load()`.

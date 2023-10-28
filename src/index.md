@@ -6,8 +6,8 @@ titleTemplate: Integrate YouTube into your Vue 2/3 app
 
 hero:
   name: VueYoutube
-  text: Vue Plugin powered by Vite and TS
-  tagline: This plugin makes it easy to integrate the YouTube Iframe Player into your Vue 2/3 app.
+  text: Plugin powered by Vite and TypeScript
+  tagline: Integrate the YouTube Iframe Player into your Vue 2/3 app
   image:
     src: /logo_shadow.svg
     alt: VueYoutube
@@ -22,10 +22,14 @@ hero:
 features:
   - title: "Vue 2/3 support"
     details: Both major versions of Vue are supported with the magic of VueDemi.
+    icon: 🚀
   - title: Flexible usage
     details: "Do it the way you like to do it: Use the plugin as a Composable or Component."
+    icon: 🛠
   - title: Reactive all the way
-    details: Everything is reactive. Even the video ID - you are now able to switch the video by just updating the ref.
+    details: Everything is reactive. Even the video ID - use Vue's native reactivity composables.
+    icon: ⚡
   - title: Full typing support
-    details: The plugin is written in 100% TypeScript and every API is fully typed.
+    details: The plugin is written in 100% TypeScript, every API is fully typed with full TS docs.
+    icon: 🦾
 ---
