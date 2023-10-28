@@ -34,7 +34,7 @@ export default defineConfig({
   sitemap: {
     hostname: 'https://vue-youtube.github.io/docs/'
   },
-  mpa: true,
+  // mpa: true,
   head: [['link', { rel: 'icon', type: 'image/x-icon', href: '/docs/favicon.ico' }]],
   lastUpdated: true,
   cleanUrls: true,
