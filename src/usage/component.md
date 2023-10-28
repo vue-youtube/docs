@@ -2,11 +2,16 @@
 
 ## Usage
 
-First install the `@vue-youtube/component` package:
+First, install the `@vue-youtube/component` package:
 
 ```shell
 pnpm install @vue-youtube/component
 ```
+---
+
+::: tip Hint
+Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.
+:::
 
 ```vue
 <script setup lang="ts">
@@ -19,7 +24,9 @@ import { YoutubeIframe } from '@vue-youtube/component';
 </template>
 ```
 
-**Make sure you registered the player manager in your `main.ts` file. See [here](./manager.md) for more information.**
+<ClientOnly>
+  <YoutubeIframe video-id="dQw4w9WgXcQ" :height="400" />
+</ClientOnly>
 
 ## Event Callbacks
 
@@ -39,7 +46,7 @@ const onReady = (event) => {
 </template>
 ```
 
-**Supported hooks**
+### Supported Hooks
 
 | Hook     | Details                                                                                                    |
 | -------- | ---------------------------------------------------------------------------------------------------------- |
@@ -64,7 +71,7 @@ const onReady = (event) => {
 </template>
 ```
 
-**Supported Options**
+### Supported Options
 
 | Option                          | Details                                                                            |
 | ------------------------------- | ---------------------------------------------------------------------------------- |
@@ -75,7 +82,7 @@ const onReady = (event) => {
 
 ## Examples
 
-### Dynamically change the video ID
+### Dynamically change the Video ID
 
 The `video-id` prop is reactive. If the video ID changes the new video will automatically start playing.
 
@@ -97,7 +104,7 @@ setTimeout(() => {
 </template>
 ```
 
-### Play / pause the video
+### Play / pause the Video
 
 You can toggle the video between playing / paused with the `togglePlay` helper function. You don't need to keep track of
 the player state.

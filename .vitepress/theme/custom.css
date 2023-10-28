@@ -29,3 +29,7 @@
 details.details.custom-block summary {
   cursor: pointer;
 }
+
+main iframe {
+  max-width: 100%;
+}
