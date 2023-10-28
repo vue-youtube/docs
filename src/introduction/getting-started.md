@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # Getting Started
 
 This section will help you getting `@vue-youtube/core` up and running quickly.
@@ -6,16 +10,21 @@ This section will help you getting `@vue-youtube/core` up and running quickly.
 
 First install the required packages via your preferred package manager. `pnpm` is recommended.
 
-```shell
-# NPM
-npm install @vue-youtube/core
+::: code-group
 
-# Yarn
-yarn add @vue-youtube/core
-
-# PNPM
-pnpm install @vue-youtube/core
+```shell [pnpm]
+pnpm add @vue-youtube/core
 ```
+
+```shell [yarn]
+yarn add @vue-youtube/core
+```
+
+```shell [npm]
+npm add @vue-youtube/core
+```
+
+:::
 
 ## Usage
 
@@ -58,16 +67,21 @@ usePlayer('dQw4w9WgXcQ', youtube);
 
 To use the Component you need to install the additional package:
 
-```shell
-# NPM
-npm install @vue-youtube/component
+::: code-group
 
-# Yarn
-yarn add @vue-youtube/component
-
-# PNPM
-pnpm install @vue-youtube/component
+```shell [pnpm]
+pnpm add @vue-youtube/component
 ```
+
+```shell [yarn]
+yarn add @vue-youtube/component
+```
+
+```shell [npm]
+npm add @vue-youtube/component
+```
+
+:::
 
 ```vue
 <script setup lang="ts">

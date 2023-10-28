@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Helper Functions
 
 `usePlayer` provides multiple `toggle*` helper functions.

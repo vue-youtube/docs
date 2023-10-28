@@ -1,3 +1,7 @@
+---
+prev: false
+---
+
 # Manager
 
 The player manager needs to be registered with `app.use()` in the `main.ts` file.
