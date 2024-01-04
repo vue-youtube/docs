@@ -30,6 +30,7 @@ export default defineConfig({
       message: 'Released under the <a href="https://github.com/vue-youtube/vue-youtube/blob/main/LICENSE">MIT License</a>.',
       copyright: 'Copyright © 2020-present <a href="https://github.com/Techassi">Techassi</a>'
     },
+    outline: [2, 3]
   },
   sitemap: {
     hostname: 'https://vue-youtube.github.io/docs/'
